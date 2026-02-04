@@ -2,16 +2,12 @@ services:
   # Backend with Telegram Bots
   - type: web
     name: m7-backend
-    repo: https://github.com/YOUR_USERNAME/m7-digital-hub.git
+    repo: https://github.com/FarukTJ-725/m7-digital-hub.git
     rootDir: server
     runtime: node
     buildCommand: npm install
     startCommand: node server.js
     envVars:
-      - key: MONGODB_URI
-        fromDatabase:
-          name: m7-db
-          property: connectionString
       - key: JWT_SECRET
         generateValue: true
       - key: TELEGRAM_ADMIN_TOKEN
@@ -22,7 +18,7 @@ services:
   # Frontend Static Site
   - type: web
     name: m7-frontend
-    repo: https://github.com/YOUR_USERNAME/m7-digital-hub.git
+    repo: https://github.com/FarukTJ-725/m7-digital-hub.git
     rootDir: client
     runtime: node
     buildCommand: npm install && npm run build
@@ -30,7 +26,3 @@ services:
     envVars:
       - key: VITE_API_URL
         value: https://m7-backend.onrender.com
-
-databases:
-  - name: m7-db
-    plan: free
