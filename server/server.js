@@ -30,6 +30,11 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/digital_h
 app.use(cors());
 app.use(express.json());
 
+// Health check endpoint for Railway
+app.get('/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 // Routes
 // Get all menu items
 app.get('/api/menu', async (req, res) => {
